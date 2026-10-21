@@ -1,0 +1,435 @@
+/* ==========================================================
+   auth.css
+   Estilos de las pantallas de acceso:
+   login.html, registro.html y recuperar.html.
+   Diseño en dos columnas: panel de color a la izquierda
+   y tarjeta con el formulario a la derecha.
+   ========================================================== */
+
+.auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ---------- Panel izquierdo (degradado) ---------- */
+.auth-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px;
+  overflow: hidden;
+  background: linear-gradient(150deg, #2b7bb9 0%, #29a9e0 45%, #6ab023 130%);
+  color: var(--blanco);
+}
+
+/* Variante azul (recuperar contraseña) */
+.auth-panel.azul {
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(150deg, #2b7bb9 0%, #29a9e0 60%, #1f93c9 100%);
+}
+
+/* Variante centrada (registro) */
+.auth-panel.centro {
+  align-items: center;
+  text-align: center;
+}
+
+/* Círculos decorativos del fondo */
+.auth-panel::before,
+.auth-panel::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.auth-panel::before {
+  top: -90px;
+  right: -90px;
+  width: 280px;
+  height: 280px;
+}
+
+.auth-panel::after {
+  bottom: -80px;
+  left: -80px;
+  width: 240px;
+  height: 240px;
+}
+
+.auth-panel > * {
+  position: relative;   /* para que el contenido quede sobre los círculos */
+  z-index: 1;
+}
+
+.panel-marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.logo-caja {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--blanco);
+}
+
+.logo-caja img {
+  width: 46px;
+}
+
+.logo-caja.grande {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 28px;
+  border-radius: 6px;
+}
+
+.logo-caja.grande img {
+  width: 96px;
+}
+
+.panel-marca strong {
+  display: block;
+  font-size: 1.3rem;
+}
+
+.panel-marca span {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.auth-panel h1 {
+  margin-bottom: 14px;
+  font-size: 2.6rem;
+  line-height: 1.15;
+}
+
+.auth-panel .lema {
+  margin-bottom: 28px;
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+/* Lista de requisitos del login (REQ-001, REQ-002...) */
+.lista-req {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.lista-req li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lista-req .chip {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Icono grande del panel de recuperar contraseña */
+.icono-grande {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 24px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 3rem;
+}
+
+/* ---------- Lista de pasos del registro ---------- */
+.pasos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 440px;
+  margin: 14px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pasos-lista li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.pasos-lista li.activo {
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 1;
+}
+
+.pasos-lista li.completado {
+  opacity: 0.85;
+}
+
+.pasos-lista .numero {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 0.9rem;
+}
+
+.pasos-lista li.activo .numero {
+  background: var(--blanco);
+  color: var(--azul);
+}
+
+.pasos-lista li.completado .numero {
+  background: #34c28a;
+  color: var(--blanco);
+}
+
+/* ---------- Lado derecho: tarjeta con el formulario ---------- */
+.auth-lado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: var(--fondo);
+}
+
+.tarjeta-auth {
+  width: 100%;
+  max-width: 430px;
+  padding: 34px 32px;
+  border-radius: 20px;
+  background: var(--blanco);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.1);
+}
+
+.tarjeta-auth h2 {
+  margin-bottom: 6px;
+  font-size: 1.6rem;
+}
+
+.tarjeta-auth .subtitulo {
+  margin-bottom: 22px;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* Campos más grandes en las pantallas de acceso (como en el diseño) */
+.tarjeta-auth .campo input {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.etiqueta-paso {
+  margin-bottom: 4px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.enlace-olvido {
+  display: block;
+  margin: -4px 0 16px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.btn-bloque {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.btn-fila {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-fila .btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.btn-borde {
+  background: var(--blanco);
+  color: #475569;
+  border-color: var(--borde);
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.separador::before,
+.separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.btn-google {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--blanco);
+  color: #334155;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-google .icono {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.btn-google:hover {
+  background: #f1f5f9;
+}
+
+.enlace-inferior {
+  margin-top: 20px;
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.enlace-inferior a {
+  font-weight: 700;
+}
+
+/* ---------- Resumen del paso 3 del registro ---------- */
+.resumen {
+  margin: 8px 0 22px;
+}
+
+.resumen div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.resumen dt {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.resumen dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  word-break: break-all;
+}
+
+/* ---------- Pantallas de éxito (cuenta creada / correo enviado) ---------- */
+.exito-caja {
+  text-align: center;
+}
+
+.exito-icono {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 2.4rem;
+}
+
+.exito-caja h2 {
+  margin-bottom: 10px;
+}
+
+.exito-caja p {
+  color: var(--texto-suave);
+}
+
+.exito-caja .correo-destino {
+  margin-bottom: 18px;
+  color: var(--azul);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.exito-caja .nota {
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.btn-texto {
+  margin-top: 12px;
+  border: none;
+  background: transparent;
+  color: var(--azul-claro);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ---------- Adaptación a tablet y celular (REQ-005) ---------- */
+@media (max-width: 860px) {
+  .auth {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-panel {
+    padding: 32px 24px;
+  }
+
+  .auth-panel h1 {
+    font-size: 1.9rem;
+  }
+
+  /* En celular el panel se reduce para que el formulario quede a la vista */
+  .lista-req,
+  .pasos-lista {
+    display: none;
+  }
+
+  .auth-panel .lema {
+    margin-bottom: 0;
+  }
+}

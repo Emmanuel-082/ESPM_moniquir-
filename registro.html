@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+  Página: Crear cuenta (registro en 3 pasos)
+    Paso 1: datos personales
+    Paso 2: credenciales (correo y contraseña)
+    Paso 3: confirmación de los datos
+  La lógica está en js/registro.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth">
+
+    <!-- Panel izquierdo: lista de pasos (se actualiza desde js/registro.js) -->
+    <section class="auth-panel centro">
+      <div class="logo-caja grande"><img src="img/logo-espm.png" alt="Logo ESPM"></div>
+      <h1>Crear cuenta</h1>
+      <p class="lema">Regístrate y accede a todos los servicios de ESPM Moniquirá.</p>
+
+      <ol class="pasos-lista" id="listaPasos">
+        <li data-paso="1" class="activo"><span class="numero">1</span> Datos personales</li>
+        <li data-paso="2"><span class="numero">2</span> Credenciales</li>
+        <li data-paso="3"><span class="numero">3</span> Confirmación</li>
+      </ol>
+    </section>
+
+    <!-- Panel derecho: formulario por pasos -->
+    <section class="auth-lado">
+      <div class="tarjeta-auth">
+
+        <!-- ===== PASO 1: datos personales ===== -->
+        <form id="paso-1" class="paso-form" novalidate>
+          <div class="etiqueta-paso">Paso 1 de 3 — Datos personales</div>
+          <h2>Datos personales</h2>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="user"></span>
+              <input type="text" id="nombre" placeholder="Juan Pérez" autocomplete="name">
+            </div>
+            <span class="error" id="error-nombre"></span>
+          </div>
+
+          <div class="campo">
+            <label for="cedula">Cédula / NIT</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="card"></span>
+              <input type="text" id="cedula" placeholder="1234567890" inputmode="numeric" maxlength="12">
+            </div>
+            <span class="error" id="error-cedula"></span>
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="phone"></span>
+              <input type="tel" id="telefono" placeholder="310 000 0000" inputmode="numeric" maxlength="13" autocomplete="tel">
+            </div>
+            <span class="error" id="error-telefono"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primario btn-bloque">Siguiente</button>
+        </form>
+
+        <!-- ===== PASO 2: credenciales ===== -->
+        <form id="paso-2" class="paso-form oculto" novalidate>
+          <div class="etiqueta-paso">Paso 2 de 3 — Credenciales</div>
+          <h2>Credenciales</h2>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="mail"></span>
+              <input type="email" id="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+            </div>
+            <span class="error" id="error-correo"></span>
+          </div>
+
+          <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="lock"></span>
+              <input type="password" id="contrasena" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+              <button type="button" class="ojo" data-objetivo="contrasena" aria-label="Mostrar contraseña" data-icono="eye"></button>
+            </div>
+            <span class="error" id="error-contrasena"></span>
+          </div>
+
+          <div class="campo">
+            <label for="confirmar">Confirmar contraseña</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="lock"></span>
+              <input type="password" id="confirmar" placeholder="Repite la contraseña" autocomplete="new-password">
+              <button type="button" class="ojo" data-objetivo="confirmar" aria-label="Mostrar contraseña" data-icono="eye"></button>
+            </div>
+            <span class="error" id="error-confirmar"></span>
+          </div>
+
+          <div class="btn-fila">
+            <button type="button" class="btn btn-borde" data-accion="atras">Atrás</button>
+            <button type="submit" class="btn btn-primario">Siguiente</button>
+          </div>
+        </form>
+
+        <!-- ===== PASO 3: confirmación ===== -->
+        <div id="paso-3" class="paso-form oculto">
+          <div class="etiqueta-paso">Paso 3 de 3 — Confirmación</div>
+          <h2>Confirmación</h2>
+          <p class="subtitulo">Revisa tus datos antes de confirmar.</p>
+
+          <dl class="resumen">
+            <div><dt>Nombre</dt><dd id="resumenNombre"></dd></div>
+            <div><dt>Cédula / NIT</dt><dd id="resumenCedula"></dd></div>
+            <div><dt>Teléfono</dt><dd id="resumenTelefono"></dd></div>
+            <div><dt>Correo</dt><dd id="resumenCorreo"></dd></div>
+          </dl>
+
+          <!-- Respuesta de la API (éxito o error) -->
+          <div id="mensaje" class="mensaje" role="alert"></div>
+
+          <div class="btn-fila">
+            <button type="button" class="btn btn-borde" data-accion="atras">Atrás</button>
+            <button type="button" id="botonConfirmar" class="btn btn-primario">Confirmar y crear cuenta</button>
+          </div>
+        </div>
+
+        <!-- ===== Cuenta creada ===== -->
+        <div id="exito" class="paso-form exito-caja oculto">
+          <div class="exito-icono" data-icono="check-circle"></div>
+          <h2>¡Cuenta creada!</h2>
+          <p>Bienvenido/a, <strong id="nombreExito"></strong></p>
+          <p class="nota">Tu cuenta ha sido registrada exitosamente.</p>
+          <a class="btn btn-primario btn-bloque" href="login.html">Iniciar sesión</a>
+        </div>
+      </div>
+
+      <p class="enlace-inferior">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+      <p class="enlace-inferior"><a href="index.html">← Volver al inicio</a></p>
+    </section>
+  </div>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

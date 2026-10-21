@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+  Página: Inicio (portal ESPM Moniquirá Conecta)
+  Contiene: aviso de corte, carrusel, estadísticas, servicios y últimos comunicados.
+  La barra de navegación y el pie de página los construye js/componentes.js.
+  La lógica de esta página está en js/inicio.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body data-pagina="inicio">
+
+  <header id="encabezado"></header>
+
+  <main>
+    <!-- Aviso amarillo (se llena desde js/inicio.js con el primer corte programado) -->
+    <div class="aviso-corte" id="avisoCorte"></div>
+
+    <!-- Carrusel principal (las diapositivas las crea js/inicio.js) -->
+    <section class="carrusel" id="carrusel" aria-label="Destacados"></section>
+
+    <!-- Estadísticas -->
+    <section class="estadisticas">
+      <div class="contenedor estadisticas-rejilla">
+        <div class="estadistica">
+          <div class="circulo" data-icono="users"></div>
+          <strong>12.500+</strong>
+          <span>Usuarios atendidos</span>
+        </div>
+        <div class="estadistica">
+          <div class="circulo" data-icono="check-circle"></div>
+          <strong>98%</strong>
+          <span>Satisfacción</span>
+        </div>
+        <div class="estadistica">
+          <div class="circulo" data-icono="clock"></div>
+          <strong>24/7</strong>
+          <span>Disponibilidad</span>
+        </div>
+        <div class="estadistica">
+          <div class="circulo" data-icono="map-pin"></div>
+          <strong>Moniquirá</strong>
+          <span>Boyacá, Colombia</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestros servicios -->
+    <section class="seccion">
+      <div class="contenedor">
+        <h2 class="seccion-titulo">Nuestros Servicios</h2>
+        <p class="seccion-sub">Accede a todos los servicios de ESPM desde un solo lugar, de forma rápida y segura.</p>
+
+        <div class="servicios">
+          <a class="servicio" href="noticias.html">
+            <div class="servicio-cabecera g-agua"><span class="chip" data-icono="droplets"></span> Agua y Alcantarillado</div>
+            <div class="servicio-cuerpo">Consulta tu consumo, estado de la red y cortes programados.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+          <a class="servicio" href="noticias.html">
+            <div class="servicio-cabecera g-aseo"><span class="chip" data-icono="trash"></span> Aseo y Recolección</div>
+            <div class="servicio-cuerpo">Horarios de rutas, puntos ecológicos y solicitudes especiales.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+          <a class="servicio" href="facturas.html">
+            <div class="servicio-cabecera g-factura"><span class="chip" data-icono="file-text"></span> Consultar Factura</div>
+            <div class="servicio-cuerpo">Revisa y paga tu factura de servicios en línea de forma segura.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+          <a class="servicio" href="pqr.html">
+            <div class="servicio-cabecera g-pqr"><span class="chip" data-icono="alert"></span> PQR</div>
+            <div class="servicio-cuerpo">Peticiones, quejas y reclamos. Te respondemos en 15 días hábiles.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+          <a class="servicio" href="noticias.html">
+            <div class="servicio-cabecera g-noticias"><span class="chip" data-icono="newspaper"></span> Noticias y Comunicados</div>
+            <div class="servicio-cuerpo">Mantente informado sobre cortes, mantenimientos y avisos.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+          <a class="servicio" href="contacto.html">
+            <div class="servicio-cabecera g-contacto"><span class="chip" data-icono="phone"></span> Contáctanos</div>
+            <div class="servicio-cuerpo">Línea de atención al cliente y puntos de servicio presencial.<br>
+              <span class="ver-mas">Ver más <span data-icono="chevron-right"></span></span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Últimos comunicados (los crea js/inicio.js desde js/datos.js) -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="comunicados">
+          <div class="comunicados-cabecera">
+            <div>
+              <h2>Últimos Comunicados</h2>
+              <p>Cortes, mantenimientos y avisos importantes</p>
+            </div>
+            <a href="noticias.html">Ver todos ›</a>
+          </div>
+          <div id="listaComunicados"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pie"></footer>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

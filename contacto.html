@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+  Página: Contáctenos
+  Muestra los datos de contacto de ESPM y un formulario de mensaje.
+  La lógica está en js/contacto.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body data-pagina="contacto">
+
+  <header id="encabezado"></header>
+
+  <main>
+    <section class="banda banda-contacto">
+      <div class="contenedor">
+        <h1>Contáctenos</h1>
+        <p>Estamos disponibles para atenderte en horario de oficina y emergencias 24/7</p>
+      </div>
+    </section>
+
+    <div class="contenedor contacto-rejilla">
+
+      <!-- Datos de contacto -->
+      <aside>
+        <div class="dato-contacto">
+          <span class="chip" data-icono="phone"></span>
+          <div><small>Línea de Atención</small><strong>(098) 726 XXXX</strong><small>Lun - Vie: 7:00 AM - 5:00 PM</small></div>
+        </div>
+        <div class="dato-contacto">
+          <span class="chip rojo" data-icono="phone"></span>
+          <div><small>Emergencias 24/7</small><strong>310 000 0000</strong><small>Daños urgentes y fugas</small></div>
+        </div>
+        <div class="dato-contacto">
+          <span class="chip" data-icono="mail"></span>
+          <div><small>Correo Electrónico</small><strong>info@espmmoniquira.gov.co</strong><small>Respuesta en 1-3 días hábiles</small></div>
+        </div>
+        <div class="dato-contacto">
+          <span class="chip verde" data-icono="map-pin"></span>
+          <div><small>Oficina Principal</small><strong>Calle 6 #5-12, Centro</strong><small>Moniquirá, Boyacá</small></div>
+        </div>
+        <div class="dato-contacto">
+          <span class="chip" data-icono="clock"></span>
+          <div><small>Horario de Atención</small><strong>Lun - Vie: 7:00 AM - 5:00 PM</strong><small>Sáb: 8:00 AM - 12:00 PM</small></div>
+        </div>
+      </aside>
+
+      <!-- Formulario -->
+      <section class="tarjeta formulario-contacto">
+        <h2>
+          <span class="chip" data-icono="message"></span>
+          <span>Envíanos un mensaje<small>Te responderemos pronto</small></span>
+        </h2>
+
+        <form id="formContacto" novalidate>
+          <div class="rejilla-2">
+            <div class="campo">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="name">
+              <span class="error" id="error-nombre"></span>
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" placeholder="300 000 0000" inputmode="numeric" maxlength="13">
+              <span class="error" id="error-telefono"></span>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+            <span class="error" id="error-correo"></span>
+          </div>
+
+          <div class="campo">
+            <label for="mensajeTexto">Mensaje</label>
+            <textarea id="mensajeTexto" placeholder="¿En qué podemos ayudarte?"></textarea>
+            <span class="error" id="error-mensajeTexto"></span>
+          </div>
+
+          <div id="mensaje" class="mensaje" role="alert"></div>
+
+          <button type="submit" class="btn btn-primario btn-enviar"><span data-icono="send"></span> Enviar mensaje</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

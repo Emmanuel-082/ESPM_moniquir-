@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+  Página: Iniciar sesión
+  Diseño en dos columnas: panel de bienvenida (izquierda) y formulario (derecha).
+  La lógica está en js/login.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth">
+
+    <!-- Panel izquierdo: mensaje de bienvenida y requisitos del sistema -->
+    <section class="auth-panel">
+      <div class="panel-marca">
+        <span class="logo-caja"><img src="img/logo-espm.png" alt="Logo ESPM"></span>
+        <div>
+          <strong>ESPM</strong>
+          <span>Servicios Públicos Moniquirá</span>
+        </div>
+      </div>
+
+      <h1>Bienvenido a<br>Moniquirá Conecta</h1>
+      <p class="lema">Gestiona tus servicios públicos de forma fácil, segura y desde cualquier lugar.</p>
+
+      <ul class="lista-req">
+        <li><span class="chip" data-icono="shield"></span> REQ-001 · Autenticación segura con protocolo HTTPS</li>
+        <li><span class="chip" data-icono="check-circle"></span> REQ-002 · Gestión completa de facturación</li>
+        <li><span class="chip" data-icono="bell"></span> REQ-003 · Notificaciones automáticas de vencimientos</li>
+        <li><span class="chip" data-icono="droplets"></span> REQ-005 · Accesible desde móvil, tablet y PC</li>
+      </ul>
+    </section>
+
+    <!-- Panel derecho: formulario -->
+    <section class="auth-lado">
+      <div class="tarjeta-auth">
+        <h2>Iniciar Sesión</h2>
+        <p class="subtitulo">Ingresa tus datos para continuar</p>
+
+        <!-- novalidate: la validación la hacemos nosotros en js/login.js -->
+        <form id="formLogin" novalidate>
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="mail"></span>
+              <input type="email" id="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+            </div>
+            <span class="error" id="error-correo"></span>
+          </div>
+
+          <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <div class="entrada">
+              <span class="entrada-icono" data-icono="lock"></span>
+              <input type="password" id="contrasena" placeholder="••••••••" autocomplete="current-password">
+              <button type="button" class="ojo" data-objetivo="contrasena" aria-label="Mostrar contraseña" data-icono="eye"></button>
+            </div>
+            <span class="error" id="error-contrasena"></span>
+          </div>
+
+          <a class="enlace-olvido" href="recuperar.html">¿Olvidaste tu contraseña?</a>
+
+          <!-- Aquí se muestra la respuesta de la API (éxito o error) -->
+          <div id="mensaje" class="mensaje" role="alert"></div>
+
+          <button type="submit" id="botonEnviar" class="btn btn-primario btn-bloque">Ingresar</button>
+        </form>
+
+        <div class="separador">o continúa con</div>
+
+        <button type="button" id="botonGoogle" class="btn-google">
+          <span data-icono="google"></span> Continuar con Google
+        </button>
+      </div>
+
+      <p class="enlace-inferior">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+      <p class="enlace-inferior"><a href="index.html">← Volver al inicio</a></p>
+    </section>
+  </div>
+
+  <!-- El orden importa: iconos, configuración, utilidades, API y por último la lógica de la página -->
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

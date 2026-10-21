@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+  Página: Consulta y pago de facturas
+  El usuario escribe su número de cuenta o cédula y se muestran sus facturas.
+  La lógica está en js/facturas.js y los datos de ejemplo en js/datos.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facturas · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body data-pagina="facturas">
+
+  <header id="encabezado"></header>
+
+  <main>
+    <section class="banda banda-azul">
+      <div class="centrado" style="margin-top:0">
+        <h1>Consulta y Pago de Facturas</h1>
+        <p>Ingresa tu número de cuenta para ver el estado de tus facturas</p>
+      </div>
+    </section>
+
+    <div class="centrado">
+      <div class="tarjeta">
+        <form id="formFacturas" novalidate>
+          <div class="campo" style="margin-bottom:0">
+            <label for="busqueda">Número de cuenta o identificación</label>
+            <div class="fila-busqueda">
+              <input type="text" id="busqueda" placeholder="Ej: 001-2345-6" autocomplete="off">
+              <button type="submit" class="btn btn-primario"><span data-icono="search"></span> Buscar</button>
+            </div>
+            <p class="ayuda">También puedes buscar por cédula o NIT del suscriptor</p>
+            <span class="error" id="error-busqueda"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Aquí aparecen las facturas encontradas -->
+      <div id="resultados"></div>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/facturas.js"></script>
+</body>
+</html>

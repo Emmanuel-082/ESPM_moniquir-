@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+  Página: Noticias y comunicados
+  Buscador + filtros por tipo (Todos, Corte, Mantenimiento, Comunicado).
+  La lógica está en js/noticias.js y los datos en js/datos.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body data-pagina="noticias">
+
+  <header id="encabezado"></header>
+
+  <main>
+    <section class="banda banda-noticias">
+      <div class="contenedor">
+        <h1><span data-icono="bell"></span> Noticias y Comunicados</h1>
+        <p>Cortes programados, mantenimientos y avisos importantes de ESPM</p>
+      </div>
+    </section>
+
+    <div class="contenedor">
+      <!-- Buscador y filtros -->
+      <div class="barra-noticias">
+        <div class="buscador">
+          <span data-icono="search"></span>
+          <input type="search" id="buscadorNoticias" placeholder="Buscar noticias...">
+        </div>
+        <div id="filtros" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" class="filtro activo" data-tipo="Todos">Todos</button>
+          <button type="button" class="filtro" data-tipo="Corte">Corte</button>
+          <button type="button" class="filtro" data-tipo="Mantenimiento">Mantenimiento</button>
+          <button type="button" class="filtro" data-tipo="Comunicado">Comunicado</button>
+        </div>
+      </div>
+
+      <!-- Tarjetas (las crea js/noticias.js) -->
+      <div class="rejilla-noticias" id="listaNoticias"></div>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/noticias.js"></script>
+</body>
+</html>

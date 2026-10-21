@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+  Página: Recuperar contraseña
+  El usuario escribe su correo y la pantalla confirma que se envió el enlace.
+  La lógica está en js/recuperar.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar contraseña · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth">
+
+    <section class="auth-panel azul">
+      <div class="icono-grande" data-icono="key"></div>
+      <h1>Recuperar contraseña</h1>
+      <p class="lema">Te enviaremos un enlace seguro a tu correo para restablecer tu acceso.</p>
+    </section>
+
+    <section class="auth-lado">
+      <div class="tarjeta-auth">
+
+        <!-- Estado 1: formulario para escribir el correo -->
+        <div id="estadoFormulario">
+          <h2>¿Olvidaste tu contraseña?</h2>
+          <p class="subtitulo">Ingresa el correo asociado a tu cuenta y te enviaremos instrucciones para restablecerla.</p>
+
+          <form id="formRecuperar" novalidate>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <div class="entrada">
+                <span class="entrada-icono" data-icono="mail"></span>
+                <input type="email" id="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+              </div>
+              <span class="error" id="error-correo"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primario btn-bloque">Enviar enlace de recuperación</button>
+          </form>
+        </div>
+
+        <!-- Estado 2: confirmación de envío -->
+        <div id="estadoEnviado" class="exito-caja oculto">
+          <div class="exito-icono" data-icono="check-circle"></div>
+          <h2>¡Correo enviado!</h2>
+          <p>Hemos enviado instrucciones a:</p>
+          <p class="correo-destino" id="correoDestino"></p>
+          <p class="nota">Revisa tu bandeja de entrada y sigue el enlace para restablecer tu contraseña.</p>
+          <button type="button" id="botonOtroCorreo" class="btn-texto">Intentar con otro correo</button>
+        </div>
+      </div>
+
+      <p class="enlace-inferior">
+        <a href="login.html">← Volver al inicio de sesión</a> &nbsp;|&nbsp; <a href="registro.html">Regístrate</a>
+      </p>
+    </section>
+  </div>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/recuperar.js"></script>
+</body>
+</html>

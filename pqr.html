@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+  Página: Peticiones, Quejas y Reclamos (PQR)
+  Dos pestañas: "Radicar PQR" (formulario) y "Consultar estado" (búsqueda por cédula).
+  La lógica está en js/pqr.js.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PQR · ESPM Moniquirá Conecta</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body data-pagina="pqr">
+
+  <header id="encabezado"></header>
+
+  <main>
+    <section class="banda banda-pqr">
+      <div class="centrado" style="margin-top:0">
+        <h1>Peticiones, Quejas y Reclamos</h1>
+        <p>Tiempo de respuesta: máximo 15 días hábiles según la ley</p>
+      </div>
+    </section>
+
+    <div class="centrado">
+
+      <!-- Pestañas -->
+      <div class="pestanas" role="tablist">
+        <button type="button" class="pestana activa" id="pestanaRadicar" role="tab">Radicar PQR</button>
+        <button type="button" class="pestana" id="pestanaConsultar" role="tab">Consultar estado</button>
+      </div>
+
+      <!-- ===== Pestaña 1: radicar ===== -->
+      <section id="panelRadicar">
+        <form id="formPqr" novalidate>
+
+          <div class="tarjeta" id="exitoPqr" style="display:none"></div>
+
+          <div class="tarjeta">
+            <h2>1. Tipo de solicitud</h2>
+            <div class="opciones-tipo" id="grupoTipo">
+              <button type="button" class="opcion" data-valor="Petición">
+                <span data-icono="help"></span><strong>Petición</strong><small>Solicitud de información o servicio</small>
+              </button>
+              <button type="button" class="opcion" data-valor="Queja">
+                <span data-icono="alert"></span><strong>Queja</strong><small>Inconformidad con el servicio</small>
+              </button>
+              <button type="button" class="opcion" data-valor="Reclamo">
+                <span data-icono="wrench"></span><strong>Reclamo</strong><small>Impugnación de factura o cobro</small>
+              </button>
+              <button type="button" class="opcion" data-valor="Sugerencia">
+                <span data-icono="check-circle"></span><strong>Sugerencia</strong><small>Propuesta de mejora del servicio</small>
+              </button>
+            </div>
+            <span class="error" id="error-tipo"></span>
+          </div>
+
+          <div class="tarjeta">
+            <h2>2. Servicio relacionado</h2>
+            <div class="opciones-servicio" id="grupoServicio">
+              <button type="button" class="opcion" data-valor="Agua Potable"><span data-icono="droplets"></span> Agua Potable</button>
+              <button type="button" class="opcion" data-valor="Alcantarillado"><span data-icono="wrench"></span> Alcantarillado</button>
+              <button type="button" class="opcion" data-valor="Aseo y Recolección"><span data-icono="trash"></span> Aseo y Recolección</button>
+              <button type="button" class="opcion" data-valor="Facturación"><span data-icono="help"></span> Facturación</button>
+            </div>
+            <span class="error" id="error-servicio"></span>
+          </div>
+
+          <div class="tarjeta">
+            <h2>3. Datos del solicitante</h2>
+
+            <div class="campo">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" placeholder="Juan Pérez" autocomplete="name">
+              <span class="error" id="error-nombre"></span>
+            </div>
+
+            <div class="rejilla-2">
+              <div class="campo">
+                <label for="cedula">Cédula / NIT</label>
+                <input type="text" id="cedula" placeholder="1234567890" inputmode="numeric" maxlength="12">
+                <span class="error" id="error-cedula"></span>
+              </div>
+              <div class="campo">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" placeholder="310 000 0000" inputmode="numeric" maxlength="13">
+                <span class="error" id="error-telefono"></span>
+              </div>
+              <div class="campo">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+                <span class="error" id="error-correo"></span>
+              </div>
+              <div class="campo">
+                <label for="cuenta">Número de cuenta (opcional)</label>
+                <input type="text" id="cuenta" placeholder="001-2345-6">
+                <span class="error" id="error-cuenta"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta">
+            <h2>4. Descripción del caso</h2>
+            <div class="campo" style="margin-bottom:0">
+              <textarea id="descripcion" rows="5" placeholder="Describa detalladamente su petición, queja, reclamo o sugerencia..."></textarea>
+              <span class="error" id="error-descripcion"></span>
+            </div>
+
+            <label class="zona-archivo" for="archivo">
+              <span data-icono="upload"></span>
+              <span id="textoArchivo">Adjuntar archivos (fotos, documentos) — máx. 5MB</span>
+              <input type="file" id="archivo" accept="image/*,.pdf,.doc,.docx">
+            </label>
+            <span class="error" id="error-archivo"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primario btn-enviar"><span data-icono="send"></span> Enviar PQR</button>
+        </form>
+      </section>
+
+      <!-- ===== Pestaña 2: consultar estado ===== -->
+      <section id="panelConsultar" class="oculto">
+        <div class="tarjeta">
+          <form id="formConsulta" novalidate>
+            <div class="campo" style="margin-bottom:0">
+              <label for="cedulaConsulta">Consultar por número de cédula</label>
+              <div class="fila-busqueda">
+                <input type="text" id="cedulaConsulta" placeholder="Ej: 1234567890" inputmode="numeric" maxlength="12">
+                <button type="submit" class="btn btn-primario"><span data-icono="search"></span> Buscar</button>
+              </div>
+              <span class="error" id="error-cedulaConsulta"></span>
+            </div>
+          </form>
+        </div>
+        <div id="resultadosPqr"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="pie"></footer>
+
+  <script src="js/iconos.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/componentes.js"></script>
+  <script src="js/pqr.js"></script>
+</body>
+</html>
